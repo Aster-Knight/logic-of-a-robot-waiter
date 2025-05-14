@@ -1,7 +1,8 @@
+
 #include <stdio.h>
-#include <string.h> // Para strcpy, strcmp, strlen
-#include <stdlib.h> // Para atoi (si es necesario, aunque intentaremos evitarlo para el input)
-#include <time.h>   // Para inicializar el tiempo (opcional)
+#include <string.h> // 
+#include <stdlib.h> // 
+#include <time.h>   // Para inicializar el tiempo
 
 // --- Definiciones y Constantes ---
 #define MAX_NOMBRE_GRUPO 50
@@ -72,7 +73,7 @@ int g_mesa12_capacidad = 2; int g_mesa12_disponible = 1; int g_mesa12_cliente_as
 // --- Funciones Auxiliares ---
 int calcular_prioridad_numerica(int tiene_reserva, int espera_excedida, const char* tipo_cliente, int hora_llegada) {
     // la variable hora de llegada no se usa directamente en la prioridad, pero si al momento de tener un empate de prioridades.
-    // Inlcuirla genera una advertencia de compilacion, pero removerla requeriria modificar gran parte del argoritmo de registro, asignacion y revision de mesas.Y dado que no afecta el resiltao, opte por no quitarla.
+    // Inlcuirla genera una advertencia de compilacion, pero removerla implica refactorizar el código.
     int prioridad_res = tiene_reserva ? 0 : 100; // Con reserva es mejor (menor valor)
     int prioridad_esp = espera_excedida ? 0 : 50;  // Espera excedida es mejor
     int prioridad_tipo_val = 99;
@@ -89,11 +90,7 @@ int calcular_prioridad_numerica(int tiene_reserva, int espera_excedida, const ch
     // Para simplificar, combinaremos los factores. Menor es mejor.
     // Ejemplo muy simple de combinación:
     return prioridad_res + prioridad_esp + prioridad_tipo_val;
-    // Nota: Una hora de llegada más temprana debería dar una MEJOR prioridad.
-    // Podríamos hacer: return prioridad_res + prioridad_esp + prioridad_tipo_val - (g_tiempo_simulacion_actual_minutos - hora_llegada)
-    // pero eso puede dar negativos y complicar. Una forma más robusta es usar tuplas como en Python.
-    // Aquí, para un solo int, la hora de llegada no influye directamente en el valor si los otros son iguales.
-    // Se puede mejorar añadiendo un pequeño factor de hora_llegada.
+
 }
 
 // --- Funciones Principales de la Aplicación ---

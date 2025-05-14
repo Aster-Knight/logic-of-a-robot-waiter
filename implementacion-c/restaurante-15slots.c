@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h> // Para strcpy, strcmp, strlen
 #include <stdlib.h> // Para atoi (si es necesario)
@@ -681,10 +682,7 @@ void mostrar_reglas_prioridad() {
 int main() {
     char linea_comando[256];
     char comando[50];
-    char arg1_str[MAX_NOMBRE_GRUPO]; // Para nombre de grupo o ID de mesa como string
-    char arg2_str[MAX_TIPO_CLIENTE]; // Para tipo de cliente o flag de reserva como string
-    int arg3_num; // Para número de personas
-    int arg4_num; // Para minutos a avanzar
+
 
     inicializar_sistema();
 
@@ -709,8 +707,6 @@ int main() {
         // Quitar carácter de nueva línea
         linea_comando[strcspn(linea_comando, "\n")] = 0;
 
-        // Parseo muy básico del comando principal y los primeros 3 argumentos
-        int num_args_leidos = sscanf(linea_comando, "%s %s %s %d %d", comando, arg1_str, arg2_str, &arg3_num, &arg4_num);
 
         if (strcmp(comando, "exit") == 0) {
             printf("Saliendo...\n");
